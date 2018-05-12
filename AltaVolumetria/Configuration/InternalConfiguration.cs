@@ -12,9 +12,10 @@ namespace Configuration
 {
     public class InternalConfiguration
     {
-        public static string ApplicationId = "2a19cb74-291c-484f-bb77-c12d44ed5843";// CloudConfigurationManager.GetSetting("ApplicationId");
-        public static string ApplicationKey = "7d694ec8-7177-4176-800a-921a81bec6d8";// CloudConfigurationManager.GetSetting("ApplicationKey");
-        public static string KeyVaultAddress = "https://dmkvSecretsdemoraul.vault.azure.net/";//CloudConfigurationManager.GetSetting("KeyVaultAddress");
+        
+        public static string ApplicationId = CloudConfigurationManager.GetSetting("ApplicationId");
+        public static string ApplicationKey = CloudConfigurationManager.GetSetting("ApplicationKey");
+        public static string KeyVaultAddress = CloudConfigurationManager.GetSetting("KeyVaultAddress");
 
 
         private static string[] _storages=null;
@@ -40,11 +41,6 @@ namespace Configuration
         public static string Kid { get { return GetSecret("Kid"); } }
         public static int NumberOfKeyVaults { get { return Convert.ToInt32( GetSecret("NumberOfKeyVaults","1")); } }
         public static string KeyVersion { get { return Kid.Replace($"https://dmkeypac{Name}01.vault.azure.net/keys/SignKey/",""); } }
-
-        public static string CosmosDatabase { get { return "Facturas"; } }
-        public static string CosmosCollection { get { return "Cfdi"; } }
-        public static string CosmosEndpoint { get { return "https://dmcosmosdb.documents.azure.com:443/"; } }
-        public static string CosmosAuthKey { get { return "A3s00h0Q5hODOYc0CJ4JHbe7BD2za3lGlZTpQJcSqHndgukoJxGj6k6BU37gp0BN3ArGK8GnGizArFt2CHvFXw=="; } }
 
 
         private static string GetSecret( string secretName, string defaultValue="")
