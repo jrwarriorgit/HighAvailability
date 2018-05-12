@@ -37,6 +37,8 @@ namespace ValidaRFC
 
         static void Main(string[] args)
         {
+            ServicePointManager.DefaultConnectionLimit = 50; //(Or More)
+            ThreadPool.SetMinThreads(50, 50);
             var sourceQueue = QueueClient.CreateFromConnectionString(InternalConfiguration.QueueConnectionString, "02ConsumerToValidaRFC");
             var destinationQueue = QueueClient.CreateFromConnectionString(InternalConfiguration.QueueConnectionString, "03ValidaRFCToSigner");
 
