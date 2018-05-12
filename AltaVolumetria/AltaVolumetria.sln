@@ -22,6 +22,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		License.txt = License.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddToCosmos", "AddToCosmos\AddToCosmos.csproj", "{DFD958E5-70E7-4370-A5B1-70055AFC4FA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{E4F163CC-6D10-454F-8BA0-E20FD7E495F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,8 +60,19 @@ Global
 		{30C94483-33C0-44F4-842F-4B08D5A190BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30C94483-33C0-44F4-842F-4B08D5A190BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30C94483-33C0-44F4-842F-4B08D5A190BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFD958E5-70E7-4370-A5B1-70055AFC4FA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD958E5-70E7-4370-A5B1-70055AFC4FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD958E5-70E7-4370-A5B1-70055AFC4FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD958E5-70E7-4370-A5B1-70055AFC4FA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F163CC-6D10-454F-8BA0-E20FD7E495F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F163CC-6D10-454F-8BA0-E20FD7E495F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F163CC-6D10-454F-8BA0-E20FD7E495F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F163CC-6D10-454F-8BA0-E20FD7E495F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {869C9DB3-E4DE-4A13-9CEC-015D8B605A83}
 	EndGlobalSection
 EndGlobal

@@ -16,6 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using Common;
 
 namespace ValidaRFC
 {
@@ -39,6 +40,8 @@ namespace ValidaRFC
         {
             var sourceQueue = QueueClient.CreateFromConnectionString(InternalConfiguration.QueueConnectionString, "02ConsumerToValidaRFC");
             var destinationQueue = QueueClient.CreateFromConnectionString(InternalConfiguration.QueueConnectionString, "03ValidaRFCToSigner");
+
+            DocumentDBRepository<Cfdi>.Initialize();
 
             IDatabase cache = null;
             if (InternalConfiguration.EnableRedisCache)
@@ -107,6 +110,10 @@ namespace ValidaRFC
                                     cfdi.ValidaRfcReceptor(cache.StringGet(cfdi.RfcReceptor));
                                     cfdi.ValidationTimeSpend = sw.ElapsedMilliseconds;
                                 }
+                                //Guarda en Cosmos DB
+                                DocumentDBRepository<Cfdi>.CreateItemAsync(cfdi).GetAwaiter().GetResult();
+                                //await DocumentDBRepository<Cfdi>.CreateItemAsync(cfdi);
+                                //Fin de guardado en cosmos
                                 destinationQueue.Send(new BrokeredMessage(new Tuple<CfdiFile, Cfdi>(file, cfdi))
                                 { SessionId = file.Guid });
 
