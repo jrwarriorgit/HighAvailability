@@ -43,7 +43,7 @@ namespace ValidaRFC
             var sourceQueue = QueueClient.CreateFromConnectionString(InternalConfiguration.QueueConnectionString, "02ConsumerToValidaRFC");
             var destinationQueue = QueueClient.CreateFromConnectionString(InternalConfiguration.QueueConnectionString, "03ValidaRFCToSigner");
 
-            DocumentDBRepository<Cfdi>.Initialize();
+            //DocumentDBRepository<Cfdi>.Initialize();
 
             IDatabase cache = null;
             if (InternalConfiguration.EnableRedisCache)
@@ -73,7 +73,7 @@ namespace ValidaRFC
                                 var cfdi = new Cfdi();
                                 if (file.Storage == "inline")
                                 {
-                                    cfdi = new Cfdi(file.FileContent);
+                                    cfdi = new Cfdi(file.FileContent,file.Guid);
                                 }
                                 else
                                 {
@@ -92,7 +92,7 @@ namespace ValidaRFC
                                         if (retrievedResult.Result != null)
                                         {
                                             var xml = ((CfdiEntity)retrievedResult.Result).Xml;
-                                            cfdi = new Cfdi(xml);
+                                            cfdi = new Cfdi(xml,file.Guid);
                                         }
                                     }
                                     else
@@ -100,7 +100,7 @@ namespace ValidaRFC
 
                                         using (var stream = blob.OpenRead())
                                         {
-                                            cfdi = new Cfdi(stream);
+                                            cfdi = new Cfdi(stream,file.Guid);
                                         }
 
                                     }
@@ -113,8 +113,7 @@ namespace ValidaRFC
                                     cfdi.ValidationTimeSpend = sw.ElapsedMilliseconds;
                                 }
                                 //Guarda en Cosmos DB
-                                DocumentDBRepository<Cfdi>.CreateItemAsync(cfdi).GetAwaiter().GetResult();
-                                //await DocumentDBRepository<Cfdi>.CreateItemAsync(cfdi);
+                                //DocumentDBRepository<Cfdi>.CreateItemAsync(cfdi).GetAwaiter().GetResult();
                                 //Fin de guardado en cosmos
                                 destinationQueue.Send(new BrokeredMessage(new Tuple<CfdiFile, Cfdi>(file, cfdi))
                                 { SessionId = file.Guid });

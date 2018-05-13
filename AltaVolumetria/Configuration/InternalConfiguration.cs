@@ -16,8 +16,7 @@ namespace Configuration
         public static string ApplicationId = CloudConfigurationManager.GetSetting("ApplicationId");
         public static string ApplicationKey = CloudConfigurationManager.GetSetting("ApplicationKey");
         public static string KeyVaultAddress = CloudConfigurationManager.GetSetting("KeyVaultAddress");
-
-
+        
         private static string[] _storages=null;
         private static Dictionary<string, string> _secrets = new Dictionary<string, string>();
         private static Dictionary<string, bool> _banderas = new Dictionary<string, bool>();
@@ -41,6 +40,11 @@ namespace Configuration
         public static string Kid { get { return GetSecret("Kid"); } }
         public static int NumberOfKeyVaults { get { return Convert.ToInt32( GetSecret("NumberOfKeyVaults","1")); } }
         public static string KeyVersion { get { return Kid.Replace($"https://dmkeypac{Name}01.vault.azure.net/keys/SignKey/",""); } }
+        public static string CosmosDatabase { get { return GetSecret("CosmosDatabase"); } }
+        public static string CosmosCollection { get { return GetSecret("CosmosCollection"); } }
+        public static string CosmosEndpoint { get { return GetSecret("CosmosEndpoint"); } }
+        public static string CosmosAuthKey { get { return GetSecret("CosmosAuthKey"); } }
+
 
 
         private static string GetSecret( string secretName, string defaultValue="")
@@ -100,7 +104,7 @@ namespace Configuration
             {
                 returnValue = keyVaultClient.GetSecretAsync(KeyVaultAddress, secretName).Result.Value;
             }
-            catch
+            catch (Exception ex)
             {
                 return defaultValue;
             }

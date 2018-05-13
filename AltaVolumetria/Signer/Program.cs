@@ -22,7 +22,7 @@ namespace Signer
         static void Main(string[] args)
         {
             var sourceQueue = QueueClient.CreateFromConnectionString(InternalConfiguration.QueueConnectionString, "03ValidaRFCToSigner");
-            //var destinationQueue = QueueClient.CreateFromConnectionString(InternalConfiguration.QueueConnectionString, "");
+            var destinationQueue = QueueClient.CreateFromConnectionString(InternalConfiguration.QueueConnectionString, "04ToCosmosDb");
 
             var keyName = "SignKey";
             var keyVaultAddress = "https://keyvaultname.vault.azure.net/";
@@ -57,10 +57,12 @@ namespace Signer
                                 string selectedVault = selectKeyVault(keyVaultAddress, rnd);
                                 var tuple = currentFile.GetBody<Tuple<CfdiFile, Cfdi>>();
                                 var algorithm = JsonWebKeySignatureAlgorithm.RS256;
-
+                                var cfdi = tuple.Item2;
                                 var signature = Task.Run(() => keyVaultClient.SignAsync(selectedVault, keyName, keyVersion, algorithm, Convert.FromBase64String(tuple.Item2.Sha256))).ConfigureAwait(false).GetAwaiter().GetResult();
+                                cfdi.Signature = signature.Result;
+                                destinationQueue.Send(new BrokeredMessage(cfdi) { SessionId = cfdi.Guid });
 
-                                currentFile.Complete();
+                               currentFile.Complete();
                             }
                             catch (Exception ex)
                             {

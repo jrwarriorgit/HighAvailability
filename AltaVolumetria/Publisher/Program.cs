@@ -25,6 +25,7 @@ namespace Publisher
 
             ServicePointManager.DefaultConnectionLimit = 50; //(Or More)
             ThreadPool.SetMinThreads(50, 50);
+            
             var destinationQueue = QueueClient.CreateFromConnectionString(InternalConfiguration.QueueConnectionString, "01PublisherToConsumer");
 
             var storages = InternalConfiguration.Storages;

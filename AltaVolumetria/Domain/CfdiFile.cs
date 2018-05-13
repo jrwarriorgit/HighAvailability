@@ -22,8 +22,8 @@ namespace Domain
 
     public class Cfdi
     {
-       
 
+        public string Guid { get; set; }
         public string UUID { get; set; }
         public string Folio { get; set; }
         public string RfcReceptor { get; set; }
@@ -31,6 +31,8 @@ namespace Domain
         public string RfcEmisorCatalogo { get; set; }
         public string RfcReceptorCatalogo { get; set; }
         public long ValidationTimeSpend { get; set; }
+
+        public byte[] Signature { get; set; }
 
         public string Sha256 { get; set; }
 
@@ -41,15 +43,16 @@ namespace Domain
             Validaciones = new Dictionary<string, bool>();
         }
 
-        public Cfdi(Stream stream):base()
+        public Cfdi(Stream stream, string guid):base()
         {
-            
+            this.Guid = guid;
             Load(stream);
             
         }
 
-        public Cfdi(string xml)
+        public Cfdi(string xml, string guid)
         {
+            this.Guid=guid;
             byte[] byteArray = Encoding.UTF8.GetBytes(xml);
             MemoryStream stream = new MemoryStream(byteArray);
             Load(stream);

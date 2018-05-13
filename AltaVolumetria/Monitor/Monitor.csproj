@@ -83,6 +83,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\dmAppExecutordemo - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\dmAppExecutorname30186 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dmAppMonitorname24391 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dmAppMonitorname25812 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dmSingleWorker - Web Deploy.pubxml" />
