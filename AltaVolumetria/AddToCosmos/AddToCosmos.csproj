@@ -70,6 +70,8 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\dmAppExecutordemokeydoc - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\dmAppExecutorname11221 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dmAppExecutorname30186 - Web Deploy.pubxml" />
     <None Include="Properties\webjob-publish-settings.json" />
   </ItemGroup>

@@ -12,7 +12,7 @@ namespace Configuration
 {
     public class InternalConfiguration
     {
-        
+
         public static string ApplicationId = CloudConfigurationManager.GetSetting("ApplicationId");
         public static string ApplicationKey = CloudConfigurationManager.GetSetting("ApplicationKey");
         public static string KeyVaultAddress = CloudConfigurationManager.GetSetting("KeyVaultAddress");

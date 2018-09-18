@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,8 +28,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -105,6 +105,8 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\dmAppExecutordemoraul - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\dmAppExecutorname11221 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\dmAppExecutorname11221drp - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dmAppExecutorname24391 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dmAppExecutorname25812 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dmAppExecutorname30186 - Web Deploy.pubxml" />

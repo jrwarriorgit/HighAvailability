@@ -64,18 +64,32 @@ namespace Monitor
     public class MonitorQueue : Monitor
     {
         NamespaceManager nsmgr;
+
         public string QueueName { get; set; }
+        private new string _connectionString;
 
         public MonitorQueue(string connectionString, string queueName, string powerBiUrlTotalInQueue, string powerBiUrlLastExecution) : base(connectionString,queueName ,  powerBiUrlTotalInQueue, powerBiUrlLastExecution)
         {
-            nsmgr = NamespaceManager.CreateFromConnectionString(connectionString);
+            _connectionString = connectionString;
+            nsmgr = NamespaceManager.CreateFromConnectionString(_connectionString);
             QueueName = queueName;
 
         }
 
         internal override long getActualValue()
         {
-            return nsmgr.GetQueue(QueueName).MessageCount;
+            long actualValue;
+            try
+            {
+                actualValue = nsmgr.GetQueue(QueueName).MessageCount;
+            }
+            catch (ArgumentException ex)
+            {
+                nsmgr = null;
+                nsmgr = NamespaceManager.CreateFromConnectionString(_connectionString);
+                throw ex;
+            }
+            return actualValue;
         }
     }
 
