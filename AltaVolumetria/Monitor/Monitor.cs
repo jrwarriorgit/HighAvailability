@@ -85,6 +85,7 @@ namespace Monitor
             }
             catch (ArgumentException ex)
             {
+                Console.WriteLine("Trying to reconnect.");
                 nsmgr = null;
                 nsmgr = NamespaceManager.CreateFromConnectionString(_connectionString);
                 throw ex;
