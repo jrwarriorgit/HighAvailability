@@ -29,6 +29,8 @@ namespace Configuration
 
             return result.AccessToken;
         }
+        public static string Tenant { get { return GetSecret("tenant"); } }
+        public static string SubscriptionId { get { return GetSecret("subscriptionId"); } }
 
         public static string QueueConnectionString { get { return GetSecret("QueueConnectionString"); } }
         public static string RedisConnectionString { get { return GetSecret("RedisConnectionString"); } }

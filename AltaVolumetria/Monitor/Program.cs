@@ -1,7 +1,5 @@
 ﻿using Configuration;
 using Domain;
-using Microsoft.ServiceBus;
-using Microsoft.ServiceBus.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
